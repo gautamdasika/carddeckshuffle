@@ -8,4 +8,4 @@ def hello():
 
 @app.route("/getcards")
 def getCards():
-    return [card for card in deck]
+    return ' , '.join([str(card) for card in deck])
