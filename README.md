@@ -18,16 +18,20 @@ Go to https://carddeckshuffle.azurewebsites.net/
 
 The index page(/) shows all your available decks. (Initially none)
 
-To create a deck, go to /createdeck
+To create a new deck, go to /createdeck
 
 For the following, replace <deck_name> with the deck you want to operate on
 
+Pop pops a card from the deck and adds to dealt cards
 To pop from a deck, go to /pop?deck=<deck_name>
 
+Shuffle randomly repositions each card in the deck
 To shuffle a deck, go to /shuffle?deck=<deck_name>
 
+Display displays the provided deck and and its dealt cards  
 To display a deck, go to /display?deck=<deck_name>
 
+Cut takes the bottom half of the deck and places it on top
 To cut a deck, go to /cut?deck=<deck_name>
 
 If you make an invalid request, you will get a standard 404
