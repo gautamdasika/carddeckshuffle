@@ -40,18 +40,13 @@ class Deck(object):
             for val in range(1, 14):
                 self.cards.append(Card(suit, val))
 
-    def serialize(self):
-        return {
-            'cards': [card.serialize() for card in self.cards]
-        }
-
-
 @app.route("/")
 def hello():
     decks = ""
     if 'decks' in session:
         decks = str(list(session['decks'].keys()))
     return decks+"<br/><br/>Welcome to deck of cards. To create a deck, go to /createdeck. To pop, cut, shuffle or display a deck, go to /(task)?deck=(deck_name)."
+
 @app.route("/createdeck")
 def createDeck():
     deck = Deck()
@@ -70,6 +65,8 @@ def createDeck():
 @app.route("/shuffle")
 def shuffle():
     deck_name = request.args.get('deck')
+    if deck_name is None or 'decks' not in session  or deck_name not in session['decks']:
+        abort(404)
     decks = session['decks']
     cards = decks[deck_name]['current_deck']
     if cards is None:
@@ -87,7 +84,7 @@ def shuffle():
 @app.route("/pop")
 def pop():
     deck_name = request.args.get('deck')
-    if 'decks' not in session:
+    if deck_name is None or 'decks' not in session  or deck_name not in session['decks']:
         abort(404)
     decks = session['decks']
     cards = decks[deck_name]['current_deck']
@@ -103,7 +100,7 @@ def pop():
 @app.route("/cut")
 def cut():
     deck_name = request.args.get('deck')
-    if 'decks' not in session:
+    if deck_name is None or 'decks' not in session  or deck_name not in session['decks']:
         abort(404)
     decks = session['decks']
     cards = decks[deck_name]['current_deck']
@@ -119,4 +116,6 @@ def cut():
 @app.route("/display")
 def display():
     deck_name = request.args.get('deck')
+    if deck_name is None or 'decks' not in session or deck_name not in session['decks']:
+        abort(404)
     return "'deck name' : {}, <br/><br/>'cards':{},<br/><br/> 'dealt cards': {}".format(deck_name, session['decks'][deck_name]['current_deck'],session['decks'][deck_name]['dealt_cards'])
