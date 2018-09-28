@@ -51,8 +51,7 @@ def hello():
     decks = ""
     if 'decks' in session:
         decks = str(list(session['decks'].keys()))
-    return decks+"<br/><br/>Welcome to deck of cards. To create a deck, go to /createdeck. To pop a card, go to /pop?deck=(deck_name). To shuffle,go to /shuffle?deck=(deck_name)."
-
+    return decks+"<br/><br/>Welcome to deck of cards. To create a deck, go to /createdeck. To pop, cut, shuffle or display a deck, go to /(task)?deck=(deck_name)."
 @app.route("/createdeck")
 def createDeck():
     deck = Deck()
