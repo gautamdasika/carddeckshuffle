@@ -1,8 +1,6 @@
 # Python Flask app on Azure Web App for Containers
 
-This is a minimal sample app that demonstrates how to run a Python Flask application on Azure App Service on Linux.
-
-For more information, please see the [Python on App Service quickstart](https://docs.microsoft.com/en-us/azure/app-service/containers/quickstart-python).
+This is a card deck shuffle app that can create, shuffle, pop, display, cut a deck of cards
 
 # Contributing
 
